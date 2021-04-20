@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Latihan Vue 3</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Assalamualaikum..</h1>
+
+    <div id="app">
+      <h4>Data & Template</h4>
+      <p>Title : {{ title }}</p>
+      <p>Author : {{ author }}</p>
+      <p>Age : {{ age }}</p>
+
+      <h4>Click Event</h4>
+      <button @click="age++">Increase age</button>
+      <button @click="age--">Decrease age</button>
+      <br /><br />
+      <div @click="ubahTitle()">Ubah title</div>
+
+      <h4>Conditional Rendering</h4>
+      <div v-if="showBooks">
+        <p>Title : {{ title }}</p>
+        <p>Author : {{ author }}</p>
+        <p>Age : {{ age }}</p>
+      </div>
+
+      <button @click="toggleBooks()">
+        <span v-if="showBooks">Hide Books</span>
+        <span v-else>Show Books</span>
+      </button>
+
+      <br /><br />
+      <h4>Mouse Events</h4>
+      <!-- mouse events -->
+      <div class="box" @mouseover="handleEvent($event, 5)">mouseover (enter)</div>
+      <div class="box" @mouseleave="handleEvent">mouseleave</div>
+      <div class="box" @dblclick="handleEvent">double click</div>
+      <div class="box" @mousemove="handleMouseMove">position - {{x}} {{y}}</div>
+
+      <h4>Outputing list & Attribute binding</h4>
+      <div v-if="showBooks">
+        <ul>
+          <li v-for="book in books">
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{book.title}}</h3>
+            <p>{{book.author}}</p>
+          </li>
+        </ul>
+      </div>
+
+      <button @click="toggleBooks()">
+        <span v-if="showBooks">Hide Books</span>
+        <span v-else>Show Books</span>
+      </button>
+
+      <h4>Dynamic class & toggling Favs</h4>
+      <div>
+        <ul>
+          <li v-for="book in books" :class="{ fav: book.isFav}" @click="toggleFav(book)">
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{book.title}}</h3>
+            <p>{{book.author}}</p>
+          </li>
+        </ul>
+      </div>
+
+      <h4>Computed Properties</h4>
+      <div>
+        <ul>
+          <li v-for="book in filteredBooks" :class="{ fav: book.isFav}" @click="toggleFav(book)">
+            <img :src="book.img" :alt="book.title" />
+            <h3>{{book.title}}</h3>
+            <p>{{book.author}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
